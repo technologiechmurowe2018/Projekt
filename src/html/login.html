@@ -1,0 +1,36 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+        <script type="text/javascript">
+        function submitForm(event){
+            event.preventDefault();
+            $.post("/login/credentials?usr="+document.getElementsByName("usr")[0].value+"&pass="+document.getElementsByName("pass")[0].value,function(){
+                window.location = '/';
+            });
+            return false;
+        }
+        </script>
+        <form onsubmit=submitForm(event)>
+            <div id="MainContainer">
+                <div class="container">
+                  <label for="usr"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="usr" required>
+                </div>
+                <div class="container">
+                  <label for="pass"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="pass" required>
+                </div>
+                <div>
+                  <button type="submit">Login</button>
+                </div>
+            </div>
+        </form> 
+</body>
+</html>
