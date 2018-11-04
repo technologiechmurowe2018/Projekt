@@ -11,8 +11,29 @@
         <script type="text/javascript">
         function submitForm(event){
             event.preventDefault();
-            $.post("/login/credentials?usr="+document.getElementsByName("usr")[0].value+"&pass="+document.getElementsByName("pass")[0].value,function(){
-                window.location = '/';
+            $.ajax({
+                type: 'POST',
+                url: "/login/credentials?usr="+document.getElementsByName("usr")[0].value+"&pass="+document.getElementsByName("pass")[0].value + (event.explicitOriginalTarget.value=="Register" ? "&new=yes":""),
+                success: function(err,res,req) {
+                    if(event.explicitOriginalTarget.value=="Register"){
+                        alert("Account made");
+                    }
+                    else{
+                        sessionStorage['token'] = req.responseText;
+                        window.location = '/';
+                    }
+                },
+                error: function(err,res,req){
+                    if(sessionStorage.getItem('token')!== null)
+                        sessionStorage.removeItem('token');
+                    if(event.explicitOriginalTarget.value=="Register"){
+                        alert("Username taken");
+                    }
+                    else{
+                        alert("Wrong credentials");
+                    }
+                    
+                }
             });
             return false;
         }
@@ -28,7 +49,8 @@
                   <input type="password" placeholder="Enter Password" name="pass" required>
                 </div>
                 <div>
-                  <button type="submit">Login</button>
+                  <button type="submit" value="Login">Login</button>
+                  <button type="submit" Value="Register">Register</button>
                 </div>
             </div>
         </form> 

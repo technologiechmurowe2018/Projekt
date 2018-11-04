@@ -4,7 +4,10 @@
   "description": "Chmury projekt",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.16.4"
+    "bcrypt": "^3.0.2",
+    "dynamodb": "^1.1.2",
+    "express": "^4.16.4",
+    "joi": "^14.0.4"
   },
   "devDependencies": {},
   "scripts": {

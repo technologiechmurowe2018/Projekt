@@ -1,1 +1,15 @@
-div#map { height: 100%; }
+div#map {
+    height: 100%;
+    clear: both;
+   }
+   div#loc{
+     display: inline-block;
+   }
+   
+   button{
+     float:right;
+   }
+
+textarea {
+    resize: none;
+}
